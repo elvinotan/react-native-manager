@@ -1,3 +1,8 @@
+/**
+ * @format
+ * @flow
+ */
+
 import React, { Component } from "react";
 import { View, Text } from "react-native";
 import { createStore } from "redux";
@@ -5,7 +10,7 @@ import { Provider } from "react-redux";
 import reducers from "./reducers";
 import firebase from "firebase";
 
-class App extends Component {
+class App extends Component<{}> {
   componentWillMount() {
     // Your web app's Firebase configuration
     const firebaseConfig = {
