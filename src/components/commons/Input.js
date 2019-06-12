@@ -25,6 +25,7 @@ const styles = {
   },
 
   inputStyle: {
+    width: 300,
     borderWidth: 1, // kasih border
     borderRadius: 5, // Setiap corner di buat round
     borderColor: "#007aff" // Gray border

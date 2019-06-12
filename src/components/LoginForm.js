@@ -1,18 +1,16 @@
 import React, { Component } from "react";
 import { Card, CardSection, Button, Input } from "./commons";
-import { emailChanged, passwordChanged } from "../actions";
+import { fEmailChanged, fPasswordChanged, fLoading } from "../actions";
 import { connect } from "react-redux";
 
 class LoginForm extends Component {
   login() {
-    const { email, password } = this.props;
-    console.log("Email " + email);
-    console.log("Password " + password);
+    const { email, password, fLoading } = this.props;
+    fLoading(true);
   }
 
   render() {
-    // console.log(this.props);
-    const { email, password, emailChanged, passwordChanged } = this.props;
+    const { email, password, fEmailChanged, fPasswordChanged } = this.props;
 
     return (
       <Card>
@@ -21,7 +19,7 @@ class LoginForm extends Component {
             label="Email"
             placeholder="email@gmail.com"
             value={email}
-            onChangeText={text => emailChanged(text)}
+            onChangeText={text => fEmailChanged(text)}
           />
         </CardSection>
         <CardSection>
@@ -30,7 +28,7 @@ class LoginForm extends Component {
             label="Passsword"
             placeholder="password"
             value={password}
-            onChangeText={text => passwordChanged(text)}
+            onChangeText={text => fPasswordChanged(text)}
           />
         </CardSection>
         <CardSection>
@@ -42,11 +40,14 @@ class LoginForm extends Component {
 }
 
 const mapStateToProp = state => {
-  console.log(state);
-  return { ...state.auth };
+  return { ...state.auth, ...state.loading };
 };
 
 export default connect(
   mapStateToProp,
-  { emailChanged, passwordChanged }
+  {
+    fEmailChanged,
+    fPasswordChanged,
+    fLoading
+  }
 )(LoginForm);
