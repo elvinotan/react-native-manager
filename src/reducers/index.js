@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import AuthReducer from "./AuthReducer";
-import LoadingReducer from "./LoadingReducer";
+import GenrealReducer from "./GenrealReducer";
 
 export default combineReducers({
   auth: AuthReducer,
-  loading: LoadingReducer
+  general: GenrealReducer
 });

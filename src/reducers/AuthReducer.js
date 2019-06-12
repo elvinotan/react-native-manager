@@ -1,4 +1,8 @@
-import { act_email_changed, act_password_changed } from "../actions";
+import {
+  act_email_changed,
+  act_password_changed,
+  act_clear_auth
+} from "../actions";
 
 const initialState = {
   email: "",
@@ -12,6 +16,9 @@ export default (state = initialState, action) => {
     }
     case act_password_changed: {
       return { ...state, password: action.payload };
+    }
+    case act_clear_auth: {
+      return { ...initialState };
     }
     default:
       return state;

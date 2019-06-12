@@ -1,12 +1,28 @@
 import React, { Component } from "react";
+import { Text, View, ActivityIndicator } from "react-native";
 import { Card, CardSection, Button, Input } from "./commons";
-import { fEmailChanged, fPasswordChanged, fLoading } from "../actions";
+import { fEmailChanged, fPasswordChanged, fLoginUser } from "../actions";
 import { connect } from "react-redux";
 
 class LoginForm extends Component {
   login() {
-    const { email, password, fLoading } = this.props;
-    fLoading(true);
+    const { email, password, fLoginUser } = this.props;
+
+    fLoginUser({ email, password });
+  }
+
+  loading() {
+    const { loading } = this.props;
+    return loading ? <ActivityIndicator size="large" color="#0000ff" /> : null;
+  }
+
+  errors() {
+    const { errors } = this.props;
+    return errors != null ? (
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <Text style={{ color: "red" }}>{errors.message}</Text>
+      </View>
+    ) : null;
   }
 
   render() {
@@ -31,16 +47,32 @@ class LoginForm extends Component {
             onChangeText={text => fPasswordChanged(text)}
           />
         </CardSection>
+        {this.errors()}
         <CardSection>
           <Button onPress={() => this.login()}>Login</Button>
         </CardSection>
+        {this.loading()}
       </Card>
     );
   }
 }
 
+const styles = {
+  container: {
+    flex: 1,
+    justifyContent: "center"
+  },
+  horizontal: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    padding: 10
+  }
+};
+
 const mapStateToProp = state => {
-  return { ...state.auth, ...state.loading };
+  const newprop = { ...state.auth, ...state.general };
+  console.log("MapStateToProp Called");
+  return newprop;
 };
 
 export default connect(
@@ -48,6 +80,6 @@ export default connect(
   {
     fEmailChanged,
     fPasswordChanged,
-    fLoading
+    fLoginUser
   }
 )(LoginForm);
