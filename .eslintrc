@@ -8,7 +8,7 @@
   "globals": {
     "require": false
   },
-  "plugins": ["react", "babel", "react-native"],
+  "plugins": ["react", "babel", "react-native", "redux", "react-redux"],
   "env": {
     "es6": true,
     "node": true,

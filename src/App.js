@@ -9,6 +9,7 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducers from "./reducers";
 import firebase from "firebase";
+import LoginFrom from "./components/LoginForm";
 
 class App extends Component<{}> {
   componentWillMount() {
@@ -31,7 +32,7 @@ class App extends Component<{}> {
     return (
       <Provider store={createStore(reducers)}>
         <View>
-          <Text>Hello</Text>
+          <LoginFrom />
         </View>
       </Provider>
     );
