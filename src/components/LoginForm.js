@@ -19,9 +19,9 @@ class LoginForm extends Component {
   errors() {
     const { errors } = this.props;
     return errors != null ? (
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
+      <CardSection style={{ justifyContent: "center", alignItems: "center" }}>
         <Text style={{ color: "red" }}>{errors.message}</Text>
-      </View>
+      </CardSection>
     ) : null;
   }
 

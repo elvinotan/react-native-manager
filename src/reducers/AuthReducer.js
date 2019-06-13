@@ -5,8 +5,8 @@ import {
 } from "../actions";
 
 const initialState = {
-  email: "",
-  password: ""
+  email: "elvino@gmail.com",
+  password: "123456"
 };
 
 export default (state = initialState, action) => {
