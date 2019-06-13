@@ -4,10 +4,13 @@ import { Input, Card, CardSection, Button, InputPicker } from "./commons";
 import { fEmployeeUpdate, fEmployeeCreate } from "../actions";
 import { connect } from "react-redux";
 
-class EmployeeCreate extends Component {
-  saveUser() {
-    const { name, phone, shift, fEmployeeCreate } = this.props;
-    fEmployeeCreate({ name, phone, shift: shift || "monday" });
+class EmployeeUpdate extends Component {
+  saveUpdate() {
+    console.log("Unimplemented");
+  }
+
+  deleteUser() {
+    console.log("Unimplemented");
   }
 
   loading() {
@@ -15,6 +18,7 @@ class EmployeeCreate extends Component {
 
     return loading ? <ActivityIndicator size="large" color="#0000ff" /> : null;
   }
+
   errors() {
     const { errors } = this.props;
 
@@ -73,7 +77,10 @@ class EmployeeCreate extends Component {
         </CardSection>
         {this.errors()}
         <CardSection>
-          <Button onPress={() => this.saveUser()}>Save</Button>
+          <Button onPress={() => this.saveUpdate()}>Update</Button>
+        </CardSection>
+        <CardSection>
+          <Button onPress={() => this.deleteUser()}>Delete</Button>
         </CardSection>
       </Card>
     );
@@ -87,4 +94,4 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(
   mapStateToProps,
   { fEmployeeUpdate, fEmployeeCreate }
-)(EmployeeCreate);
+)(EmployeeUpdate);
