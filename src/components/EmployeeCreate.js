@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import { View, Text, Picker } from "react-native";
 import { Input, Card, CardSection, Button, InputPicker } from "./commons";
-import { fEmployeeUpdate } from "../actions";
+import { fEmployeeUpdate, fEmployeeCreate } from "../actions";
 import { connect } from "react-redux";
 
 class EmployeeCreate extends Component {
   saveUser() {
-    const { name, phone, shift } = this.props;
+    const { name, phone, shift, fEmployeeCreate } = this.props;
     console.log("Name " + name);
     console.log("Phone " + phone);
     console.log("Shift " + shift);
+    fEmployeeCreate({ name, phone, shift: shift || "monday" });
   }
 
   loading() {
@@ -86,5 +87,5 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(
   mapStateToProps,
-  { fEmployeeUpdate }
+  { fEmployeeUpdate, fEmployeeCreate }
 )(EmployeeCreate);
