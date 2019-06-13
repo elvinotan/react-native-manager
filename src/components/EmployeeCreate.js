@@ -1,11 +1,16 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
-import { Input, Card, CardSection, Button } from "./commons";
+import { View, Text, Picker } from "react-native";
+import { Input, Card, CardSection, Button, InputPicker } from "./commons";
 import { fEmployeeUpdate } from "../actions";
 import { connect } from "react-redux";
 
 class EmployeeCreate extends Component {
-  saveUser() {}
+  saveUser() {
+    const { name, phone, shift } = this.props;
+    console.log("Name " + name);
+    console.log("Phone " + phone);
+    console.log("Shift " + shift);
+  }
 
   loading() {
     const { loading } = this.props;
@@ -48,10 +53,27 @@ class EmployeeCreate extends Component {
             }
           />
         </CardSection>
-        <CardSection />
+        <CardSection>
+          <InputPicker
+            items={[
+              { label: "Monday", value: "monday" },
+              { label: "Tuesday", value: "tuesday" },
+              { label: "Wednesday", value: "wednesday" },
+              { label: "Thursday", value: "thursday" },
+              { label: "Friday", value: "friday" },
+              { label: "Saturday", value: "saturday" },
+              { label: "Sunday", value: "sunday" }
+            ]}
+            label="Shift"
+            selectedValue={shift}
+            onValueChange={text =>
+              fEmployeeUpdate({ prop: "shift", value: text })
+            }
+          />
+        </CardSection>
         {this.errors()}
         <CardSection>
-          <Button>Save</Button>
+          <Button onPress={() => this.saveUser()}>Save</Button>
         </CardSection>
       </Card>
     );

@@ -1,13 +1,23 @@
 import React from "react";
-import { View, Text, TextInput } from "react-native";
+import { View, Text, Picker } from "react-native";
 
-const Input = ({ label, ...otherProps }) => {
+const InputPicker = ({ label, items, ...otherProps }) => {
   const { viewStyle, textStyle, inputStyle } = styles;
+
+  renderItem = () => {
+    return items.map(item => {
+      return (
+        <Picker.Item key={item.value} label={item.label} value={item.value} />
+      );
+    });
+  };
 
   return (
     <View style={viewStyle}>
       <Text style={textStyle}>{label}</Text>
-      <TextInput style={inputStyle} {...otherProps} />
+      <Picker style={inputStyle} {...otherProps}>
+        {this.renderItem()}
+      </Picker>
     </View>
   );
 };
@@ -31,4 +41,4 @@ const styles = {
   }
 };
 
-export { Input };
+export { InputPicker };
